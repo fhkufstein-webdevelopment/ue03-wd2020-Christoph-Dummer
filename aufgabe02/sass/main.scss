@@ -1,9 +1,17 @@
 @import "compass/reset";
 @import "compass/css3";
 
+
 body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+   /* -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;*/
+    /* Er hätte für font smoothing ein mixin benutzen können */
+
+    @mixin smoothFont {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+    }
+    @include smoothFont;
 
     font-family:'Open Sans', sans-serif;
 }
@@ -77,25 +85,61 @@ label {
     display: block;
     height: 100%;
 
-    -moz-transition-property: width;
+   /* -moz-transition-property: width;
     -o-transition-property: width;
     -webkit-transition-property: width;
-    transition-property: width;
+    transition-property: width; */
+    /*Mixin wäre möglich gewesen*/
 
-    -moz-transition-delay: 0;
+    @mixin transition-property {
+        -moz-transition-property: width;
+        -o-transition-property: width;
+        -webkit-transition-property: width;
+        transition-property: width;
+    }
+    @include transition-property;
+
+   /* -moz-transition-delay: 0;
     -o-transition-delay: 0;
     -webkit-transition-delay: 0;
-    transition-delay: 0;
+    transition-delay: 0; */
+    /*Mixin wäre möglich gewesen*/
 
-    -moz-transition-duration: 250ms;
+    @mixin transition-delay {
+        -moz-transition-delay: 0;
+        -o-transition-delay: 0;
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+    }
+    @include transition-delay;
+
+    /*-moz-transition-duration: 250ms;
     -o-transition-duration: 250ms;
     -webkit-transition-duration: 250ms;
-    transition-duration: 250ms;
+    transition-duration: 250ms; */
+    /*Mixin wäre möglich gewesen*/
 
-    -moz-transition-timing-function: linear;
+    @mixin transition-duration {
+        -moz-transition-duration: 250ms;
+        -o-transition-duration: 250ms;
+        -webkit-transition-duration: 250ms;
+        transition-duration: 250ms;
+    }
+    @include transition-duration;
+
+   /* -moz-transition-timing-function: linear;
     -o-transition-timing-function: linear;
     -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
+    transition-timing-function: linear; */
+    /*Mixin wäre möglich gewesen*/
+
+    @mixin transition-timing {
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+    }
+    @include transition-timing;
 }
 
 .passwordWrapper::after {
@@ -135,4 +179,7 @@ label {
 .success .feedback.success {
     display: block;
 }
-
+/* Compass hat bei mir leider keine Änderungen vorgenommen, muss mich mit dem Problem noch genauer auseinandersetzen.
+Ich konnte alle Funktionalitäten nutzen, compass watch hat aber nichts bewirkt, auch nicht, als ich bei config.rg auf compressed umgestellt habe.
+(Habe compass watch natürlich danach nochmals neu gestartet.) War im richtigen Verzeichnis und habe auch CommandPrompt with Ruby verwendet.
+ */
